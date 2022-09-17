@@ -3,15 +3,11 @@ using UnityEngine;
 
 namespace ScoreSpace
 {
-    public class Player : MonoBehaviour
+    public class Player : LiveObject
     {
-        [SerializeField] private Rigidbody2D _rigidbody;
         [SerializeField] private Bit _bit;
 
-        [SerializeField] private float _speed = 4;
-        [SerializeField] private float _maxVelocity = 4;
-
-        [SerializeField] private float _rotationSpeed = 4;
+        [SerializeField] protected float RotationSpeed = 4;
 
         [SerializeField] private float _dashSpeed = 10;
         [SerializeField] private float _dashTime = 0.3f;
@@ -19,19 +15,12 @@ namespace ScoreSpace
         [SerializeField] private int _dashCost = 3;
         [SerializeField] private int _currentDash = 3;
 
+        protected float StandardRotationMultiply = 1;
+
         private PlayerState _state = PlayerState.Moving;
         public PlayerState State => _state;
 
-        private Transform _transform;
-
-        private float _standardSpeedMultiply = 30;
-        private float _standardRotationMultiply = 1;
         private float _horizontal;
-
-        private void Awake()
-        {
-            _transform = transform;
-        }
 
         private void Update()
         {
@@ -62,7 +51,8 @@ namespace ScoreSpace
 
         private void Dash()
         {
-            _rigidbody.AddForce(_transform.up * _standardSpeedMultiply * _dashSpeed * Time.deltaTime, ForceMode2D.Impulse);
+            Rigidbody.velocity = Vector2.zero;
+            Rigidbody.AddForce(transform.up * StandardSpeedMultiply * _dashSpeed * Time.deltaTime, ForceMode2D.Impulse);
             _state = PlayerState.Dashing;
 
             _currentDash -= _dashCost;
@@ -82,28 +72,15 @@ namespace ScoreSpace
             _currentDash++;
         }
 
-        private void Move()
-        {
-            _rigidbody.AddForce(_transform.up * _standardSpeedMultiply * _speed * Time.deltaTime);
-
-            if (_rigidbody.velocity.x > _maxVelocity)
-                _rigidbody.velocity = new Vector2(_maxVelocity, _rigidbody.velocity.y);
-
-            if (_rigidbody.velocity.y > _maxVelocity)
-                _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _maxVelocity);
-        }
-
         private void Rotate(float horizontal)
         {
-            _rigidbody.SetRotation(_transform.rotation.eulerAngles.z - (horizontal * _standardRotationMultiply * _rotationSpeed));
-            //_transform.rotation = Quaternion.Euler(_transform.rotation.eulerAngles.x, _transform.rotation.eulerAngles.y, _transform.rotation.eulerAngles.z - (horizontal * _standardRotationMultiply * _rotationSpeed));
+            Rigidbody.SetRotation(transform.rotation.eulerAngles.z - (horizontal * StandardRotationMultiply * RotationSpeed));
         }
     }
 
     public enum PlayerState
     {
         Moving,
-        Dashing,
-        Death
+        Dashing
     }
 }

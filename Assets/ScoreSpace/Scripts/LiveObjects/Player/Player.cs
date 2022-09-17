@@ -7,13 +7,18 @@ namespace ScoreSpace
     {
         [SerializeField] private Bit _bit;
 
-        [SerializeField] protected float RotationSpeed = 4;
+        [SerializeField] private float _rotationSpeed = 4;
 
         [SerializeField] private float _dashSpeed = 10;
         [SerializeField] private float _dashTime = 0.3f;
 
         [SerializeField] private int _dashCost = 3;
         [SerializeField] private int _currentDash = 3;
+
+        private bool _canBeDestroyed = true;
+
+        public bool CanBeDestroyed { get => _canBeDestroyed; set => _canBeDestroyed = value; }
+        public float RotationSpeed { get => _rotationSpeed; set => _rotationSpeed = value; }
 
         protected float StandardRotationMultiply = 1;
 
@@ -49,6 +54,12 @@ namespace ScoreSpace
             }
         }
 
+        public override void Destroy()
+        {
+            if (_canBeDestroyed)
+                base.Destroy();
+        }
+
         private void Dash()
         {
             Rigidbody.velocity = Vector2.zero;
@@ -74,7 +85,7 @@ namespace ScoreSpace
 
         private void Rotate(float horizontal)
         {
-            Rigidbody.SetRotation(transform.rotation.eulerAngles.z - (horizontal * StandardRotationMultiply * RotationSpeed));
+            Rigidbody.SetRotation(transform.rotation.eulerAngles.z - (horizontal * StandardRotationMultiply * _rotationSpeed));
         }
     }
 

@@ -8,7 +8,7 @@ namespace ScoreSpace
 
         protected override void StartRandomSpawn()
         {
-            Bonus prefab = _bonusPrefabs[Random.Range(0, _bonusPrefabs.Length - 1)];
+            Bonus prefab = _bonusPrefabs[Random.Range(0, _bonusPrefabs.Length)];
             Vector2 position = GetRandomPosition();
 
             Instantiate(prefab, position, Quaternion.identity, Parent);

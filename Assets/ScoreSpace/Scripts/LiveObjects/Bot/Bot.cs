@@ -16,6 +16,13 @@ namespace ScoreSpace
             Move();
         }
 
+        public override void Destroy()
+        {
+            if (!_isDestroyed)
+                Score.Add(1);
+            base.Destroy();
+        }
+
         protected override void Move()
         {
             base.Move();

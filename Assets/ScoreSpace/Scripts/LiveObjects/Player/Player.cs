@@ -45,12 +45,19 @@ namespace ScoreSpace
             if (_state != PlayerState.Moving)
                 return;
 
-            if (Input.GetKeyDown(KeyCode.Space) && _bit.InBit)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (_currentDash >= _dashCost)
-                    Dash();
+                if (_bit.InBit)
+                {
+                    if (_currentDash >= _dashCost)
+                        Dash();
+                    else
+                        ReduceDashCooldown();
+                }
                 else
-                    ReduceDashCooldown();
+                {
+                    Score.Remove(1);
+                }
             }
         }
 
@@ -63,7 +70,11 @@ namespace ScoreSpace
         public override void Destroy()
         {
             if (_canBeDestroyed)
+            {
+                if (!_isDestroyed)
+                    Score.SubmitScore();
                 base.Destroy();
+            }
         }
 
         private void Dash()

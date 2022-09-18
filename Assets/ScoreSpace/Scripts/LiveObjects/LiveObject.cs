@@ -19,6 +19,8 @@ namespace ScoreSpace
 
         protected float StandardSpeedMultiply = 30;
 
+        protected bool _isDestroyed = false;
+
         [SerializeField] protected Team Team;
 
         public float Speed { get => _speed; set => _speed = value; }
@@ -46,12 +48,13 @@ namespace ScoreSpace
 
         protected void BounceRigidbody(Rigidbody2D rigidbody)
         {
-            rigidbody.AddForce(Vector3.Reflect(rigidbody.transform.up, transform.up) * Rigidbody.velocity.magnitude * AttackForce, ForceMode2D.Impulse);
+            rigidbody.AddForce(AttackForce * Rigidbody.velocity.magnitude * Vector3.Reflect(rigidbody.transform.up, transform.up), ForceMode2D.Impulse);
         }
 
         public virtual void Destroy()
         {
             enabled = false;
+            _isDestroyed = true;
             StartCoroutine(WaitForDestroy());
         }
 

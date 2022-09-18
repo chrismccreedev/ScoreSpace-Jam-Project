@@ -103,13 +103,14 @@ MonoBehaviour:
   Finder: {fileID: 6877011098963590694}
   Rigidbody: {fileID: 6877011098686858354}
   DestroyDelay: 5
+  AttackForce: 1
   _speed: 4
   _maxVelocity: 4
   Team: 0
   _bit: {fileID: 0}
   _rotationSpeed: 4
-  _dashSpeed: 18
-  _dashTime: 0.4
+  _dashSpeed: 20
+  _dashTime: 0.8
   _dashCost: 3
   _currentDash: 3
 --- !u!50 &6877011098686858354
@@ -248,7 +249,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9228ba893b84784c856cd9f8556cf09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyTeam: 1
 --- !u!50 &6877011098963590695
 Rigidbody2D:
   serializedVersion: 4

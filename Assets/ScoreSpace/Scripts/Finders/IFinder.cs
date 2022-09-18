@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace ScoreSpace
 {
@@ -6,5 +7,8 @@ namespace ScoreSpace
     {
         public event Action<LiveObject> OnLiveObjectEnters;
         public event Action<LiveObject> OnLiveObjectExits;
+
+        public event Action<Rigidbody2D> OnRigidbodyEnters;
+        public event Action<Rigidbody2D> OnRigidbodyExits;
     }
 }

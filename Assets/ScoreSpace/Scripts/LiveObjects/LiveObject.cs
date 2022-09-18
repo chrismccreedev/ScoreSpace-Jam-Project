@@ -12,6 +12,7 @@ namespace ScoreSpace
         [SerializeField] protected Rigidbody2D Rigidbody;
 
         [SerializeField] protected float DestroyDelay = 5;
+        [SerializeField] protected float AttackForce = 2;
 
         [SerializeField] private float _speed = 4;
         [SerializeField] private float _maxVelocity = 4;
@@ -28,16 +29,24 @@ namespace ScoreSpace
         private void Awake()
         {
             Finder.OnLiveObjectEnters += Attack;
+            Finder.OnRigidbodyEnters += BounceRigidbody;
         }
 
         private void OnDestroy()
         {
             Finder.OnLiveObjectEnters -= Attack;
+            Finder.OnRigidbodyEnters -= BounceRigidbody;
         }
 
         protected virtual void Attack(LiveObject liveObject)
         {
-            liveObject.Destroy();
+            if (liveObject.Team != Team)
+                liveObject.Destroy();
+        }
+
+        protected void BounceRigidbody(Rigidbody2D rigidbody)
+        {
+            rigidbody.AddForce(Vector3.Reflect(rigidbody.transform.up, transform.up) * Rigidbody.velocity.magnitude * AttackForce, ForceMode2D.Impulse);
         }
 
         public virtual void Destroy()

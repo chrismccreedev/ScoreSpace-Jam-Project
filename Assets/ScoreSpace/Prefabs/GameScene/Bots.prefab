@@ -46,20 +46,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnPositions:
-  - {x: 17, y: 12}
-  - {x: 17, y: 0}
-  - {x: 17, y: -12}
-  - {x: -17, y: 12}
-  - {x: -17, y: 0}
-  - {x: -17, y: -12}
-  - {x: -7, y: 12}
-  - {x: -7, y: -12}
-  - {x: 7, y: 12}
-  - {x: 7, y: -12}
+  - {x: 37, y: 22}
+  - {x: 37, y: 0}
+  - {x: 37, y: -22}
+  - {x: -37, y: 22}
+  - {x: -37, y: 0}
+  - {x: -37, y: -22}
+  - {x: -14, y: 22}
+  - {x: -14, y: -22}
+  - {x: 14, y: 22}
+  - {x: 14, y: -22}
   Parent: {fileID: 4566379360278360491}
-  _spawnDelay: 5
+  _spawnDelay: 6
   _spawnDelayReduction: 0.05
-  _minSpawnDelay: 1
+  _minSpawnDelay: 4
   _botPrefabs:
   - {fileID: 934859793214881817, guid: 974d0081e51e0344abf6b7d197731126, type: 3}
   _player: {fileID: 0}

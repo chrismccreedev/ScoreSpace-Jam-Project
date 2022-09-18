@@ -9,8 +9,8 @@ namespace ScoreSpace
 
         [SerializeField] private float _rotationSpeed = 4;
 
-        [SerializeField] private float _dashSpeed = 10;
-        [SerializeField] private float _dashTime = 0.3f;
+        [SerializeField] private float _dashSpeed = 15;
+        [SerializeField] private float _dashTime = 0.5f;
 
         [SerializeField] private int _dashCost = 3;
         [SerializeField] private int _currentDash = 3;
@@ -52,6 +52,12 @@ namespace ScoreSpace
                 else
                     ReduceDashCooldown();
             }
+        }
+
+        protected override void Attack(LiveObject liveObject)
+        {
+            if (_state == PlayerState.Dashing)
+                base.Attack(liveObject);
         }
 
         public override void Destroy()

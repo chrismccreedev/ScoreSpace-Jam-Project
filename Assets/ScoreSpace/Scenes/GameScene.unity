@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6877011098686858359, guid: c2012bcc211d6f3489e59bebbfbed874, type: 3}
+      propertyPath: _bit
+      value: 
+      objectReference: {fileID: 2140228369}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2012bcc211d6f3489e59bebbfbed874, type: 3}
 --- !u!114 &398970017 stripped
@@ -191,6 +195,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8756e3010f6560145bb3a0686badcf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1639708243 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6877011098686858357, guid: c2012bcc211d6f3489e59bebbfbed874, type: 3}
+  m_PrefabInstance: {fileID: 398970016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2140228369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4105504941797028034, guid: 03cd55eb9b7701f41961d37253d1d654, type: 3}
+  m_PrefabInstance: {fileID: 2005793930740542087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 125c53575f652a74f86a7bf4eb297f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &734661202982379812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198,14 +218,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 654840916951325119, guid: 0f4e50060c035ba4c9f67795937c7ac1, type: 3}
-      propertyPath: m_BoundingShape2D
-      value: 
+    - target: {fileID: 1181180639464530954, guid: 0f4e50060c035ba4c9f67795937c7ac1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181180639464530954, guid: 0f4e50060c035ba4c9f67795937c7ac1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.11
       objectReference: {fileID: 0}
     - target: {fileID: 4225619603640220878, guid: 0f4e50060c035ba4c9f67795937c7ac1, type: 3}
       propertyPath: m_Name
       value: Camera and Post Processing
       objectReference: {fileID: 0}
+    - target: {fileID: 5866816473408909469, guid: 0f4e50060c035ba4c9f67795937c7ac1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866816473408909469, guid: 0f4e50060c035ba4c9f67795937c7ac1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6562619992897423569, guid: 0f4e50060c035ba4c9f67795937c7ac1, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 1639708243}
     - target: {fileID: 7134744075483155437, guid: 0f4e50060c035ba4c9f67795937c7ac1, type: 3}
       propertyPath: m_RootOrder
       value: 5

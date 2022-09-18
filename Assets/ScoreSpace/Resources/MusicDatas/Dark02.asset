@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe423482325b56449d602259616441b, type: 3}
+  m_Name: Dark02
+  m_EditorClassIdentifier: 
+  _audioClip: {fileID: 8300000, guid: b15ff5a2e363844f495045993610505b, type: 3}
+  _bitDelay: 0.4
+  _bitLength: 0.1
+  _name: Dark02

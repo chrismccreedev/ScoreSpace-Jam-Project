@@ -7,20 +7,19 @@ namespace ScoreSpace
     {
         [SerializeField] private GameObject _bitSignal;
 
-        [SerializeField] private float _bitDelay = 0.5f;
-        [SerializeField] private float _bitLength = 0.1f;
-
         private bool _inBit = false;
         public bool InBit => _inBit;
 
         private void Start()
         {
-            StartBit();
+            SoundManager.Instance.onPlayMusic += StartBit;
+            SoundManager.Instance.onStopMusic += StopBit;
         }
 
-        public void StartBit()
+        public void StartBit(MusicData musicData)
         {
-            StartCoroutine(WaitForBit());
+            StopBit();
+            StartCoroutine(WaitForBit(musicData.BitDelay, musicData.BitLength));
         }
 
         public void StopBit()
@@ -28,18 +27,29 @@ namespace ScoreSpace
             StopAllCoroutines();
         }
 
-        private IEnumerator WaitForBit()
+        private IEnumerator WaitForBit(float bitDelay, float bitLength)
         {
             while (true)
             {
                 _inBit = false;
                 _bitSignal.SetActive(false);
-                yield return new WaitForSeconds(_bitDelay);
+                yield return new WaitForSeconds(bitDelay);
 
                 _inBit = true;
                 _bitSignal.SetActive(true);
-                yield return new WaitForSeconds(_bitLength);
+                yield return new WaitForSeconds(bitLength);
             }
+        }
+
+        private void OnDestroy()
+        {
+            SoundManager.Instance.onPlayMusic -= StartBit;
+            SoundManager.Instance.onStopMusic -= StopBit;
+        }
+
+        public void UseBit()
+        {
+            _inBit = false;
         }
     }
 }

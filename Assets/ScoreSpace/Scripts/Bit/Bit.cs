@@ -10,7 +10,7 @@ namespace ScoreSpace
         private bool _inBit = false;
         public bool InBit => _inBit;
 
-        private void Start()
+        private void Awake()
         {
             SoundManager.Instance.onPlayMusic += StartBit;
             SoundManager.Instance.onStopMusic += StopBit;
@@ -18,8 +18,7 @@ namespace ScoreSpace
 
         public void StartBit(MusicData musicData)
         {
-            StopBit();
-            StartCoroutine(WaitForBit(musicData.BitDelay, musicData.BitLength));
+            StartCoroutine(WaitForBit(musicData.BitDelay, musicData.BitLength, musicData.Offset));
         }
 
         public void StopBit()
@@ -27,8 +26,10 @@ namespace ScoreSpace
             StopAllCoroutines();
         }
 
-        private IEnumerator WaitForBit(float bitDelay, float bitLength)
+        private IEnumerator WaitForBit(float bitDelay, float bitLength, float offset)
         {
+            yield return new WaitForSeconds(offset);
+
             while (true)
             {
                 _inBit = false;

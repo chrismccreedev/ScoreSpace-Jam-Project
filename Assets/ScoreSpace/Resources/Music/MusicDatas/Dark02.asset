@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0fe423482325b56449d602259616441b, type: 3}
-  m_Name: Dark01
+  m_Name: Dark02
   m_EditorClassIdentifier: 
-  _audioClip: {fileID: 8300000, guid: 258e311ecdad0499f84da6b125e6177c, type: 3}
-  _bitDelay: 0.25
-  _bitLength: 0.25
-  _name: Dark01
+  _name: Dark02
+  _audioClip: {fileID: 8300000, guid: b15ff5a2e363844f495045993610505b, type: 3}
+  _bitDelay: 0.45
+  _bitLength: 0.15
+  _offset: 0

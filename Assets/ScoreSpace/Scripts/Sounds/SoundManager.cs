@@ -64,6 +64,11 @@ namespace ScoreSpace
             onStopMusic?.Invoke();
             _musicSource.Stop();
         }
+
+        public void ChangeVolume(AudioSource audioSource, float volume)
+        {
+            audioSource.volume = volume;
+        }
     }
 }
 

@@ -24,6 +24,9 @@ namespace ScoreSpace
 
         private void RotateToPlayer()
         {
+            if (_player == null)
+                return;
+
             Vector3 heading = _player.transform.position - transform.position;
             float distance = heading.magnitude;
             Vector3 direction = heading / distance;

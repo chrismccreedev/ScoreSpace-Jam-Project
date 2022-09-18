@@ -100,14 +100,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8756e3010f6560145bb3a0686badcf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weapon: {fileID: 6877011098963590694}
+  Finder: {fileID: 6877011098963590694}
   Rigidbody: {fileID: 6877011098686858354}
   DestroyDelay: 5
-  Speed: 4
-  MaxVelocity: 4
+  _speed: 4
+  _maxVelocity: 4
   Team: 0
   _bit: {fileID: 0}
-  RotationSpeed: 2.5
+  _rotationSpeed: 4
   _dashSpeed: 18
   _dashTime: 0.4
   _dashCost: 3
@@ -294,5 +294,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 0.55}
+  m_Size: {x: 1.15, y: 0.55}
   m_EdgeRadius: 0

@@ -6,12 +6,14 @@ namespace ScoreSpace
     {
         [SerializeField] private Bonus[] _bonusPrefabs;
 
+        public Bonus SpawnedBonus { get; private set; }
+
         protected override void StartRandomSpawn()
         {
             Bonus prefab = _bonusPrefabs[Random.Range(0, _bonusPrefabs.Length)];
             Vector2 position = GetRandomPosition();
 
-            Instantiate(prefab, position, Quaternion.identity, Parent);
+            SpawnedBonus = Instantiate(prefab, position, Quaternion.identity, Parent);
         }
     }
 }

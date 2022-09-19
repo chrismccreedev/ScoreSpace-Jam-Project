@@ -61,6 +61,11 @@ namespace ScoreSpace
             }
         }
 
+        public void RefreshDash()
+        {
+            _currentDash = _dashCost;
+        }
+
         protected override void Attack(LiveObject liveObject)
         {
             if (_state == PlayerState.Dashing)
@@ -70,11 +75,7 @@ namespace ScoreSpace
         public override void Destroy()
         {
             if (_canBeDestroyed)
-            {
-                if (!_isDestroyed)
-                    Score.SubmitScore();
                 base.Destroy();
-            }
         }
 
         private void Dash()

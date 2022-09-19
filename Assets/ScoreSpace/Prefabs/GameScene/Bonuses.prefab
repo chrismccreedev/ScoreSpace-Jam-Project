@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5317930342720991708}
   - component: {fileID: 2582270570294004992}
+  - component: {fileID: 7609945151473652908}
   m_Layer: 0
   m_Name: Bonuses
   m_TagString: Untagged
@@ -101,3 +102,16 @@ MonoBehaviour:
   - {fileID: 7618370903429343211, guid: 6a1484a6d3ca99346af29d00d0c9ac08, type: 3}
   - {fileID: 1785116098303985382, guid: 806235d97a91ffa4893506cce33a6cc9, type: 3}
   - {fileID: 866687261692805388, guid: 9e44d9173329b0b4581f9a94d19991eb, type: 3}
+--- !u!114 &7609945151473652908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3301863401805333656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ffd73f5f6f5fd449bb03d1e612325c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawner: {fileID: 2582270570294004992}

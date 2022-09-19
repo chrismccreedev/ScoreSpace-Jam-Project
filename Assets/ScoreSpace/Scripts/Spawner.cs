@@ -17,18 +17,9 @@ namespace ScoreSpace
 
         private float _currentDelay;
 
-        private void Awake()
-        {
-            _currentDelay = _spawnDelay;
-        }
-
-        private void Start()
-        {
-            StartSpawn();
-        }
-
         public void StartSpawn()
         {
+            _currentDelay = _spawnDelay;
             StartCoroutine(WaitForSpawn());
         }
 

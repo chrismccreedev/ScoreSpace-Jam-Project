@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8756e3010f6560145bb3a0686badcf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnDeath: 0
   Finder: {fileID: 6877011098963590694}
   Rigidbody: {fileID: 6877011098686858354}
   DestroyDelay: 5

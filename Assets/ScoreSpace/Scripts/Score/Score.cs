@@ -1,5 +1,6 @@
 using UnityEngine;
 using LootLocker.Requests;
+using System;
 
 namespace ScoreSpace
 {
@@ -19,7 +20,7 @@ namespace ScoreSpace
         {
             Instance = this;
 
-            LootLockerSDKManager.StartGuestSession("DEBUG", (response) =>
+            LootLockerSDKManager.StartGuestSession((response) =>
             {
                 if (!response.success)
                 {
@@ -52,11 +53,12 @@ namespace ScoreSpace
 
         public static void SubmitScore()
         {
-            LootLockerSDKManager.SubmitScore("DEBUG", Instance._score, Instance._leaderboardId, (response) =>
+            LootLockerSDKManager.SubmitScore(PlayerPrefs.GetString("Name"), Instance._score, Instance._leaderboardId, (response) =>
             {
                 if (response.statusCode == 200)
                 {
                     Debug.Log("Score submitted");
+                    Reset();
                 }
                 else
                 {
@@ -65,13 +67,14 @@ namespace ScoreSpace
             });
         }
 
-        public void GetLeaderboard()
+        public static void GetLeaderboard(Action<LootLockerLeaderboardMember[]> onComplete)
         {
             LootLockerSDKManager.GetScoreList(Instance._leaderboardId, Instance._leaderboardTopCount, Instance._after, (response) =>
             {
                 if (response.statusCode == 200)
                 {
                     Debug.Log("ScoreList getted");
+                    onComplete?.Invoke(response.items);
                 }
                 else
                 {

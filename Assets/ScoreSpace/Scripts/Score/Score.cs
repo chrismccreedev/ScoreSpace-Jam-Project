@@ -7,9 +7,9 @@ namespace ScoreSpace
     {
         private static Score Instance;
 
-        public readonly int LeaderboardId = 7196;
-        public readonly int LeaderboardTopCount = 10;
-        public readonly int After = 0;
+        [SerializeField] private int _leaderboardId = 7196;
+        [SerializeField] private int _leaderboardTopCount = 10;
+        [SerializeField] private int _after = 0;
 
         private string _playerId;
 
@@ -19,7 +19,7 @@ namespace ScoreSpace
         {
             Instance = this;
 
-            LootLockerSDKManager.StartGuestSession("DEBUG PLAYER", (response) =>
+            LootLockerSDKManager.StartGuestSession("DEBUG", (response) =>
             {
                 if (!response.success)
                 {
@@ -52,7 +52,7 @@ namespace ScoreSpace
 
         public static void SubmitScore()
         {
-            LootLockerSDKManager.SubmitScore("DEBUG PLAYER", Instance._score, Instance.LeaderboardId, (response) =>
+            LootLockerSDKManager.SubmitScore("DEBUG", Instance._score, Instance._leaderboardId, (response) =>
             {
                 if (response.statusCode == 200)
                 {
@@ -67,7 +67,7 @@ namespace ScoreSpace
 
         public void GetLeaderboard()
         {
-            LootLockerSDKManager.GetScoreList(Instance.LeaderboardId, Instance.LeaderboardTopCount, Instance.After, (response) =>
+            LootLockerSDKManager.GetScoreList(Instance._leaderboardId, Instance._leaderboardTopCount, Instance._after, (response) =>
             {
                 if (response.statusCode == 200)
                 {

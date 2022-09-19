@@ -632,8 +632,8 @@ MonoBehaviour:
 
 
 
-    For an incorrect hit under the beat, 1 point
-    is deducted.
+    For an incorrect hit under the beat, 3 seconds
+    space not working.
 
     1 point for killing an enemy'
   m_isRightToLeft: 0

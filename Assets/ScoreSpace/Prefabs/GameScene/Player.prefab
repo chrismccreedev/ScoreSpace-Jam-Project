@@ -186,8 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8756e3010f6560145bb3a0686badcf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyOnDeath: 0
-  Finder: {fileID: 6877011098963590694}
+  Finder: {fileID: 7304747580401190667}
   Rigidbody: {fileID: 6877011098686858354}
   DestroyDelay: 5
   AttackForce: 1
@@ -355,9 +354,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6877011098963590747}
   - component: {fileID: 6877011098963590744}
-  - component: {fileID: 6877011098963590694}
   - component: {fileID: 6877011098963590695}
   - component: {fileID: 6877011098963590745}
+  - component: {fileID: 7304747580401190667}
   m_Layer: 7
   m_Name: Weapon
   m_TagString: Untagged
@@ -432,18 +431,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6877011098963590694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6877011098963590746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9228ba893b84784c856cd9f8556cf09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &6877011098963590695
 Rigidbody2D:
   serializedVersion: 4
@@ -491,3 +478,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.25, y: 0.65}
   m_EdgeRadius: 0
+--- !u!114 &7304747580401190667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6877011098963590746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11350f4e2f69484e86938144e38d28f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -18,7 +18,11 @@ namespace ScoreSpace
         [SerializeField] private int _dashCost = 3;
         [SerializeField] private int _currentDash = 3;
 
+        [SerializeField] private float _penalty = 3;
+
         private bool _canBeDestroyed = true;
+
+        private bool _hasPenalty = false;
 
         public bool CanBeDestroyed { get => _canBeDestroyed; set => _canBeDestroyed = value; }
         public float RotationSpeed { get => _rotationSpeed; set => _rotationSpeed = value; }
@@ -48,6 +52,9 @@ namespace ScoreSpace
             if (_state != PlayerState.Moving)
                 return;
 
+            if (_hasPenalty)
+                return;
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (_bit.InBit)
@@ -61,15 +68,23 @@ namespace ScoreSpace
                 }
                 else
                 {
-                    Score.Remove(1);
+                    StartCoroutine(WaitForPenalty());
                 }
             }
+        }
+
+        private IEnumerator WaitForPenalty()
+        {
+            _hasPenalty = true;
+            yield return new WaitForSeconds(_penalty);
+            _hasPenalty = false;
         }
 
         public void RefreshPlayer()
         {
             _currentDash = _dashCost;
             _isDestroyed = false;
+            _hasPenalty = false;
             enabled = true;
             OnCurrentDashChanged?.Invoke(_currentDash, _dashCost);
         }

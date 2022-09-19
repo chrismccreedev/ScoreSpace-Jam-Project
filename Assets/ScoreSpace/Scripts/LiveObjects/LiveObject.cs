@@ -8,6 +8,8 @@ namespace ScoreSpace
     {
         public event Action<LiveObject> OnObjectDestroyed;
 
+        [SerializeField] protected bool DestroyOnDeath = true;
+
         [SerializeField] protected CollisionFinder Finder;
         [SerializeField] protected Rigidbody2D Rigidbody;
 
@@ -80,7 +82,11 @@ namespace ScoreSpace
 
             yield return new WaitForSeconds(DestroyDelay);
             OnObjectDestroyed?.Invoke(this);
-            Destroy(gameObject);
+
+            if (DestroyOnDeath)
+                Destroy(gameObject);
+            else
+                gameObject.SetActive(false);
         }
 
         protected virtual void Move()

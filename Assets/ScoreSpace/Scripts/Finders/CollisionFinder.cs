@@ -11,7 +11,7 @@ namespace ScoreSpace
         public event Action<Rigidbody2D> OnRigidbodyEnters;
         public event Action<Rigidbody2D> OnRigidbodyExits;
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
             if (collision.transform.TryGetComponent(out LiveObject liveObject))
                 OnLiveObjectEnters?.Invoke(liveObject);
@@ -20,7 +20,7 @@ namespace ScoreSpace
                 OnRigidbodyEnters?.Invoke(rigidbody);
         }
 
-        private void OnCollisionExit2D(Collision2D collision)
+        protected virtual void OnCollisionExit2D(Collision2D collision)
         {
             if (collision.transform.TryGetComponent(out LiveObject liveObject))
                 OnLiveObjectExits?.Invoke(liveObject);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 namespace ScoreSpace
 {
@@ -55,26 +56,22 @@ namespace ScoreSpace
 
         public virtual void Destroy()
         {
-            enabled = false;
-            _isDestroyed = true;
-            StartCoroutine(WaitForDestroy());
+            if (!_isDestroyed)
+            {
+                enabled = false;
+                _isDestroyed = true;
+                StartCoroutine(WaitForDestroy());
+            }
         }
 
         private IEnumerator WaitForDestroy()
         {
-            for (int i = 0; i < 15; i++)
-            {
-                if(i < 5)
-                {
-                    transform.localScale += new Vector3(0.1f, 0.1f, 1);
-                    yield return new WaitForSeconds(0.05f);
-                }
-                else
-                {
-                    transform.localScale -= new Vector3(0.05f, 0.05f, 1);
-                    yield return new WaitForSeconds(0.05f);
-                }
-            }
+            Sequence sequence = DOTween.Sequence();
+            sequence.Append(transform.DOPunchScale(Vector3.one * 1.2f, 0.25f));
+            sequence.Append(transform.DOPunchScale(Vector3.one * 1.16f, 0.25f));
+            sequence.Append(transform.DOPunchScale(Vector3.one * 1.12f, 0.25f));
+            sequence.Append(transform.DOPunchScale(Vector3.one * 1.08f, 0.25f));
+            sequence.Append(transform.DOPunchScale(Vector3.one * 1.04f, 0.25f));
 
             yield return new WaitForSeconds(DestroyDelay);
             OnObjectDestroyed?.Invoke(this);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,7 +6,12 @@ namespace ScoreSpace
 {
     public class Bit : MonoBehaviour
     {
-        [SerializeField] private GameObject _bitSignal;
+        public event Action OnBitStarted;
+        public event Action OnBitEnded;
+
+        public float BitDelay { get; private set; }
+        public float BitLength { get; private set; }
+        public float SumLength => BitDelay + BitLength;
 
         private bool _inBit = false;
         public bool InBit => _inBit;
@@ -18,6 +24,9 @@ namespace ScoreSpace
 
         public void StartBit(MusicData musicData)
         {
+            BitDelay = musicData.BitDelay;
+            BitLength = musicData.BitLength;
+
             StartCoroutine(WaitForBit(musicData.BitDelay, musicData.BitLength, musicData.Offset));
         }
 
@@ -33,11 +42,11 @@ namespace ScoreSpace
             while (true)
             {
                 _inBit = false;
-                _bitSignal.SetActive(false);
+                OnBitEnded?.Invoke();
                 yield return new WaitForSeconds(bitDelay);
 
                 _inBit = true;
-                _bitSignal.SetActive(true);
+                OnBitStarted?.Invoke();
                 yield return new WaitForSeconds(bitLength);
             }
         }

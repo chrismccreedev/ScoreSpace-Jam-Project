@@ -17,8 +17,6 @@ namespace ScoreSpace
         [SerializeField] private Button _leaderboardButton;
         [SerializeField] private Button _tutorialButton;
 
-        private bool _gameIsStopped = true;
-
         public override void InitializeWindow()
         {
             base.InitializeWindow();
@@ -59,8 +57,6 @@ namespace ScoreSpace
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
-            _gameIsStopped = true;
-
             _player.gameObject.SetActive(false);
 
             KillAllBots();
@@ -76,8 +72,6 @@ namespace ScoreSpace
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-
-            _gameIsStopped = false;
 
             RefreshPlayer();
 
@@ -105,14 +99,14 @@ namespace ScoreSpace
             Bonus[] bonuses = _bonusManager.Bonuses.ToArray();
 
             foreach (Bonus bonus in bonuses)
-                Destroy(bonus.gameObject);
+                bonus.Destroy();
         }
 
         private void RefreshPlayer()
         {
             _player.gameObject.SetActive(true);
             _player.transform.position = Vector2.zero;
-            _player.RefreshDash();
+            _player.RefreshPlayer();
         }
 
         private void OnExitButtonClick()

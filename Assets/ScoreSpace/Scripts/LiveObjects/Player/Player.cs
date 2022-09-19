@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ namespace ScoreSpace
 {
     public class Player : LiveObject
     {
+        public event Action<int, int> OnCurrentDashChanged;
+
         [SerializeField] private Bit _bit;
 
         [SerializeField] private float _rotationSpeed = 4;
@@ -49,6 +52,8 @@ namespace ScoreSpace
             {
                 if (_bit.InBit)
                 {
+                    _bit.UseBit();
+
                     if (_currentDash >= _dashCost)
                         Dash();
                     else
@@ -61,9 +66,11 @@ namespace ScoreSpace
             }
         }
 
-        public void RefreshDash()
+        public void RefreshPlayer()
         {
             _currentDash = _dashCost;
+            _isDestroyed = false;
+            enabled = true;
         }
 
         protected override void Attack(LiveObject liveObject)
@@ -85,6 +92,7 @@ namespace ScoreSpace
             _state = PlayerState.Dashing;
 
             _currentDash -= _dashCost;
+            OnCurrentDashChanged?.Invoke(_currentDash, _dashCost);
 
             StartCoroutine(WaitForDash());
         }
@@ -99,6 +107,7 @@ namespace ScoreSpace
         private void ReduceDashCooldown()
         {
             _currentDash++;
+            OnCurrentDashChanged?.Invoke(_currentDash, _dashCost);
         }
 
         private void Rotate(float horizontal)

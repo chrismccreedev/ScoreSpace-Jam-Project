@@ -27,6 +27,12 @@ namespace ScoreSpace
             _finder.OnLiveObjectEnters -= UseBonus;
         }
 
+        public void Destroy()
+        {
+            OnBonusUsed?.Invoke(this);
+            Destroy(gameObject);
+        }
+
         private void UseBonus(LiveObject liveObject)
         {
             if (liveObject.TryGetComponent(out Player player))

@@ -21,6 +21,7 @@ namespace ScoreSpace
             if (!_isDestroyed)
                 Score.Add(1);
             base.Destroy();
+            GetComponent<SpriteRenderer>().color = new Color32(155, 155, 155, 255);
         }
 
         protected override void Move()
@@ -39,12 +40,6 @@ namespace ScoreSpace
             Vector3 direction = heading / distance;
             float z = -Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
             Rigidbody.SetRotation(z);
-        }
-
-        public override void Destroy()
-        {
-            base.Destroy();
-            GetComponent<SpriteRenderer>().color = new Color32(155, 155, 155, 255);
         }
     }
 }

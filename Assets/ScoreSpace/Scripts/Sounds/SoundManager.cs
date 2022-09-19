@@ -30,7 +30,7 @@ namespace ScoreSpace
 
         private void Start()
         {
-            PlayMusicWithBit("Dark01");
+            PlayMusicWithBit(MusicType.Dark01);
         }
 
         public void PlaySoundOfType(SoundType soundType)
@@ -40,19 +40,19 @@ namespace ScoreSpace
 
         private SoundAudioClip GetSoundAudioClip(SoundType soundType) => _soundAudioClip.Where(a => a.soundType == soundType).FirstOrDefault();
 
-        private MusicData GetMusicData(string name) => _musicDatas.Where(a => a.Name == name).FirstOrDefault();  
+        private MusicData GetMusicData(MusicType musicType) => _musicDatas.Where(a => a.Type == musicType).FirstOrDefault();  
 
-        public void PlayMusic(string name)
+        public void PlayMusic(MusicType musicType)
         {
-            MusicData musicData = GetMusicData(name);
+            MusicData musicData = GetMusicData(musicType);
 
             _musicSource.clip = musicData.AudioClip;
             _musicSource.Play();
         }
 
-        public void PlayMusicWithBit(string name)
+        public void PlayMusicWithBit(MusicType musicType)
         {
-            MusicData musicData = GetMusicData(name);
+            MusicData musicData = GetMusicData(musicType);
 
             onPlayMusic?.Invoke(musicData);
             _musicSource.clip = musicData.AudioClip;
@@ -85,4 +85,11 @@ public enum SoundType
     Death,
     GoodBit,
     BadBit
+}
+
+public enum MusicType
+{
+    Dark01,
+    Dark02,
+    Dark03
 }

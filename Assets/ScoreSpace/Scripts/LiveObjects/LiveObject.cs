@@ -57,6 +57,20 @@ namespace ScoreSpace
 
         private IEnumerator WaitForDestroy()
         {
+            for (int i = 0; i < 15; i++)
+            {
+                if(i < 5)
+                {
+                    transform.localScale += new Vector3(0.1f, 0.1f, 1);
+                    yield return new WaitForSeconds(0.05f);
+                }
+                else
+                {
+                    transform.localScale -= new Vector3(0.05f, 0.05f, 1);
+                    yield return new WaitForSeconds(0.05f);
+                }
+            }
+
             yield return new WaitForSeconds(DestroyDelay);
             OnObjectDestroyed?.Invoke(this);
             Destroy(gameObject);

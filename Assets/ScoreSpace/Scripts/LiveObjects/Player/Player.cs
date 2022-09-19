@@ -88,6 +88,7 @@ namespace ScoreSpace
 
         private void Dash()
         {
+            SoundManager.Instance.PlaySoundOfType(SoundType.Dash);
             Rigidbody.velocity = Vector2.zero;
             Rigidbody.AddForce(transform.up * StandardSpeedMultiply * _dashSpeed * Time.deltaTime, ForceMode2D.Impulse);
             _state = PlayerState.Dashing;

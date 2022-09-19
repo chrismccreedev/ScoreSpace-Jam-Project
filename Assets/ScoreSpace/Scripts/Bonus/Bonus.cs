@@ -48,6 +48,7 @@ namespace ScoreSpace
             _renderer.enabled = false;
             _collider2D.enabled = false;
 
+            SoundManager.Instance.PlaySoundOfType(SoundType.BonusPickup);
             StartBonus();
             yield return new WaitForSeconds(_duration);
             EndBonus();

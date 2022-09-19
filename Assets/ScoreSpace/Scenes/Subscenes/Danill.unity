@@ -1117,6 +1117,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3943376585107016155, guid: db47e2fd7f4971942a25320a1a4dfbd7, type: 3}
+      propertyPath: _soundAudioClip.Array.data[0].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 44a8e9b56734a5f4589e659bcba8b6c2, type: 3}
+    - target: {fileID: 3943376585107016155, guid: db47e2fd7f4971942a25320a1a4dfbd7, type: 3}
+      propertyPath: _soundAudioClip.Array.data[1].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b11bb1cda1c258b4a94be385eb3ba619, type: 3}
+    - target: {fileID: 3943376585107016155, guid: db47e2fd7f4971942a25320a1a4dfbd7, type: 3}
+      propertyPath: _soundAudioClip.Array.data[2].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: fcd26f934975f1141a13b7c36d740524, type: 3}
+    - target: {fileID: 3943376585107016155, guid: db47e2fd7f4971942a25320a1a4dfbd7, type: 3}
+      propertyPath: _soundAudioClip.Array.data[3].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: cc1629cdb2155c149bbe439e72c233f0, type: 3}
     - target: {fileID: 3943376585107016157, guid: db47e2fd7f4971942a25320a1a4dfbd7, type: 3}
       propertyPath: m_Name
       value: Sounds

@@ -1,15 +1,12 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
 namespace ScoreSpace
 {
     public abstract class LiveObject : MonoBehaviour
     {
         public event Action<LiveObject> OnObjectDestroyed;
-
-        [SerializeField] protected bool DestroyOnDeath = true;
 
         [SerializeField] protected CollisionFinder Finder;
         [SerializeField] protected Rigidbody2D Rigidbody;
@@ -21,8 +18,6 @@ namespace ScoreSpace
         [SerializeField] private float _maxVelocity = 4;
 
         protected float StandardSpeedMultiply = 30;
-
-        protected bool _isDestroyed = false;
 
         [SerializeField] protected Team Team;
 
@@ -51,35 +46,35 @@ namespace ScoreSpace
 
         protected void BounceRigidbody(Rigidbody2D rigidbody)
         {
-            rigidbody.AddForce(AttackForce * Rigidbody.velocity.magnitude * Vector3.Reflect(rigidbody.transform.up, transform.up), ForceMode2D.Impulse);
+            rigidbody.AddForce(Vector3.Reflect(rigidbody.transform.up, transform.up) * Rigidbody.velocity.magnitude * AttackForce, ForceMode2D.Impulse);
         }
 
         public virtual void Destroy()
         {
-            if (!_isDestroyed)
-            {
-                enabled = false;
-                _isDestroyed = true;
-                StartCoroutine(WaitForDestroy());
-            }
+            SoundManager.Instance.PlaySoundOfType(SoundType.Death);
+            enabled = false;
+            StartCoroutine(WaitForDestroy());
         }
 
         private IEnumerator WaitForDestroy()
         {
-            Sequence sequence = DOTween.Sequence();
-            sequence.Append(transform.DOPunchScale(Vector3.one * 1.2f, 0.25f));
-            sequence.Append(transform.DOPunchScale(Vector3.one * 1.16f, 0.25f));
-            sequence.Append(transform.DOPunchScale(Vector3.one * 1.12f, 0.25f));
-            sequence.Append(transform.DOPunchScale(Vector3.one * 1.08f, 0.25f));
-            sequence.Append(transform.DOPunchScale(Vector3.one * 1.04f, 0.25f));
+            for (int i = 0; i < 15; i++)
+            {
+                if(i < 5)
+                {
+                    transform.localScale += new Vector3(0.1f, 0.1f, 1);
+                    yield return new WaitForSeconds(0.05f);
+                }
+                else
+                {
+                    transform.localScale -= new Vector3(0.05f, 0.05f, 1);
+                    yield return new WaitForSeconds(0.05f);
+                }
+            }
 
             yield return new WaitForSeconds(DestroyDelay);
             OnObjectDestroyed?.Invoke(this);
-
-            if (DestroyOnDeath)
-                Destroy(gameObject);
-            else
-                gameObject.SetActive(false);
+            Destroy(gameObject);
         }
 
         protected virtual void Move()

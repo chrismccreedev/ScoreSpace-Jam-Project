@@ -177,13 +177,13 @@ MonoBehaviour:
   _soundSource: {fileID: 51161143417783621}
   _musicSource: {fileID: 36891252742476706}
   _soundAudioClip:
-  - audioClip: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: 44a8e9b56734a5f4589e659bcba8b6c2, type: 3}
     soundType: 0
-  - audioClip: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: b11bb1cda1c258b4a94be385eb3ba619, type: 3}
     soundType: 1
-  - audioClip: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: fcd26f934975f1141a13b7c36d740524, type: 3}
     soundType: 2
-  - audioClip: {fileID: 0}
+  - audioClip: {fileID: 8300000, guid: cc1629cdb2155c149bbe439e72c233f0, type: 3}
     soundType: 3
   - audioClip: {fileID: 0}
     soundType: 4

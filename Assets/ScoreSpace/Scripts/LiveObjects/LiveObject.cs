@@ -19,6 +19,8 @@ namespace ScoreSpace
 
         protected float StandardSpeedMultiply = 30;
 
+        protected bool _isDestroyed;
+
         [SerializeField] protected Team Team;
 
         public float Speed { get => _speed; set => _speed = value; }
@@ -51,9 +53,13 @@ namespace ScoreSpace
 
         public virtual void Destroy()
         {
-            SoundManager.Instance.PlaySoundOfType(SoundType.Death);
-            enabled = false;
-            StartCoroutine(WaitForDestroy());
+            if (!_isDestroyed)
+            {
+                enabled = false;
+                _isDestroyed = true;
+                SoundManager.Instance.PlaySoundOfType(SoundType.Death);
+                StartCoroutine(WaitForDestroy());
+            }
         }
 
         private IEnumerator WaitForDestroy()

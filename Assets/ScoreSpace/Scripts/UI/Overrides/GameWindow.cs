@@ -13,25 +13,32 @@ namespace ScoreSpace
         [SerializeField] private Image _filler;
 
         [SerializeField] private Transform _beatParent;
-        [SerializeField] private Vector2[] _beatPositions;
+        [SerializeField] private Vector2 _beatPosition;
         [SerializeField] private Vector2 _beatDestination;
         [SerializeField] private Image _beatPrefab;
 
-        private List<Image> _beats = new(3);
+        [SerializeField] private List<Image> _beatSignals = new(2);
+
+        private int _current = 0;
 
         public override void InitializeWindow()
         {
             base.InitializeWindow();
+
             _player.OnObjectDestroyed += LeaveGame;
             _player.OnCurrentDashChanged += SetFiller;
 
-            _beat.OnBitEnded += StartBeat;
+            _beat.OnBitStarted += StartBeat;
+            _beat.OnBitEnded += EndBeat;
         }
 
         private void OnDestroy()
         {
             _player.OnObjectDestroyed -= LeaveGame;
             _player.OnCurrentDashChanged -= SetFiller;
+
+            _beat.OnBitStarted -= StartBeat;
+            _beat.OnBitEnded -= EndBeat;
         }
 
         private void Update()
@@ -57,42 +64,41 @@ namespace ScoreSpace
 
         private void StartBeat()
         {
-            if (_beats.Count > 2)
-            {
-                RecolorBeat(_beats[0]);
-                RecolorBeat(_beats[1]);
-            }
+            RecolorBeat(_beatSignals[_current]);
 
-            CreateBeat(_beatPositions[0]);
-            CreateBeat(_beatPositions[1]);
+            _current++;
+            if (_current >= _beatSignals.Count)
+                _current = 0;
+
+            CreateBeat(_beatSignals[_current]);
         }
 
         private void EndBeat()
         {
-            if (_beats.Count > 2)
-            {
-                RemoveBeat(_beats[0]);
-                RemoveBeat(_beats[1]);
-            }
+            if (_current == 0)
+                RemoveBeat(_beatSignals[1]);
+            else
+                RemoveBeat(_beatSignals[0]);
         }
 
         private void RecolorBeat(Image beat)
         {
-            beat.DOColor(Color.red, _beat.BitLength / 2);
+            beat.DOColor(Color.red, _beat.BitLength / 10);
         }
 
         private void RemoveBeat(Image beat)
         {
-            _beats.Remove(beat);
-            Destroy(beat.gameObject);
+            beat.gameObject.SetActive(false);
+            beat.color = new Color(1, 1, 1, 0.25f);
         }
 
-        private void CreateBeat(Vector3 position)
+        private void CreateBeat(Image beat)
         {
-            _beats.Add(Instantiate(_beatPrefab, position, Quaternion.identity, _beatParent));
+            beat.gameObject.SetActive(true);
 
-            _beats[^1].DOFade(1, _beat.SumLength);
-            _beats[^1].transform.DOMove(_beatDestination, _beat.SumLength);
+            beat.transform.localPosition = _beatPosition;
+            beat.DOFade(1, _beat.SumLength);
+            beat.transform.DOLocalMove(_beatDestination, _beat.SumLength);
         }
     }
 }

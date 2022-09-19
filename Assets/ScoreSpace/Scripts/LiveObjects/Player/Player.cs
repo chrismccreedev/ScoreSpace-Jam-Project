@@ -71,6 +71,7 @@ namespace ScoreSpace
             _currentDash = _dashCost;
             _isDestroyed = false;
             enabled = true;
+            OnCurrentDashChanged?.Invoke(_currentDash, _dashCost);
         }
 
         protected override void Attack(LiveObject liveObject)

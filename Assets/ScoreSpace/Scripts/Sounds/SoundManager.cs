@@ -30,7 +30,7 @@ namespace ScoreSpace
 
         private void Start()
         {
-            PlayMusicWithBit(MusicType.Dark01);
+            PlayMusicWithBit(MusicType.Dark03);
         }
 
         public void PlaySoundOfType(SoundType soundType)

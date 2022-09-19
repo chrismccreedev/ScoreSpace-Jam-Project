@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8756e3010f6560145bb3a0686badcf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnDeath: 1
   Finder: {fileID: 7304747580401190667}
   Rigidbody: {fileID: 6877011098686858354}
   DestroyDelay: 5
@@ -199,6 +200,7 @@ MonoBehaviour:
   _dashTime: 0.8
   _dashCost: 3
   _currentDash: 3
+  _penalty: 0.5
 --- !u!50 &6877011098686858354
 Rigidbody2D:
   serializedVersion: 4

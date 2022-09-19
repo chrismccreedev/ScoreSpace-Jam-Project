@@ -56,7 +56,7 @@ namespace ScoreSpace
             {
                 if (response.statusCode == 200)
                 {
-                    Debug.Log("Successful");
+                    Debug.Log("Score submitted");
                 }
                 else
                 {
@@ -71,7 +71,7 @@ namespace ScoreSpace
             {
                 if (response.statusCode == 200)
                 {
-                    Debug.Log("Successful");
+                    Debug.Log("ScoreList getted");
                 }
                 else
                 {

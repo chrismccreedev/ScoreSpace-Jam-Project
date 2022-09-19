@@ -40,5 +40,11 @@ namespace ScoreSpace
             float z = -Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
             Rigidbody.SetRotation(z);
         }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+            GetComponent<SpriteRenderer>().color = new Color32(155, 155, 155, 255);
+        }
     }
 }

@@ -10,11 +10,13 @@ namespace ScoreSpace
 
         protected override void StartBonus()
         {
+            Player.GetComponent<TrailRenderer>().enabled = true;
             AddValues(_speedGain, _maxVelocityGain, _rotationSpeedGain);
         }
 
         protected override void EndBonus()
         {
+            Player.GetComponent<TrailRenderer>().enabled = false;
             AddValues(-_speedGain, -_maxVelocityGain, -_rotationSpeedGain);
         }
 

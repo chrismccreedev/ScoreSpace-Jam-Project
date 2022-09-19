@@ -7,8 +7,8 @@ namespace ScoreSpace
     [CreateAssetMenu(fileName = "Music",menuName = "MusicData")]
     public class MusicData : ScriptableObject
     {
-        [SerializeField] private string _name;
-        public string Name => _name;
+        [SerializeField] private MusicType _type;
+        public MusicType Type => _type;
 
         [SerializeField] private AudioClip _audioClip;
         public AudioClip AudioClip => _audioClip;

@@ -7,7 +7,7 @@ namespace ScoreSpace
     {
         private static Score Instance;
 
-        public readonly int LeaderboardId = 7151;
+        public readonly int LeaderboardId = 7196;
         public readonly int LeaderboardTopCount = 10;
         public readonly int After = 0;
 
@@ -19,11 +19,11 @@ namespace ScoreSpace
         {
             Instance = this;
 
-            LootLockerSDKManager.StartGuestSession((response) =>
+            LootLockerSDKManager.StartGuestSession("DEBUG PLAYER", (response) =>
             {
                 if (!response.success)
                 {
-                    Debug.Log("error starting LootLocker session");
+                    Debug.Log(response.Error);
                     return;
                 }
 
@@ -52,8 +52,7 @@ namespace ScoreSpace
 
         public static void SubmitScore()
         {
-            Debug.Log(Instance._playerId + " : " + Instance._score + " : " + Instance.LeaderboardId);
-            LootLockerSDKManager.SubmitScore(Instance._playerId, Instance._score, Instance.LeaderboardId, (response) =>
+            LootLockerSDKManager.SubmitScore("DEBUG PLAYER", Instance._score, Instance.LeaderboardId, (response) =>
             {
                 if (response.statusCode == 200)
                 {
@@ -62,8 +61,6 @@ namespace ScoreSpace
                 else
                 {
                     Debug.Log("failed: " + response.Error);
-                    Debug.Log(response.statusCode);
-                    Debug.Log(response.success);
                 }
             });
         }

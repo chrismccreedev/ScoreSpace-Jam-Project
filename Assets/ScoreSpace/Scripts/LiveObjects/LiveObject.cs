@@ -51,6 +51,7 @@ namespace ScoreSpace
 
         public virtual void Destroy()
         {
+            SoundManager.Instance.PlaySoundOfType(SoundType.Death);
             enabled = false;
             StartCoroutine(WaitForDestroy());
         }

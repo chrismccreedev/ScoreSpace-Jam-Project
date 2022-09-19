@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Dark03
   _audioClip: {fileID: 8300000, guid: a716130e5ecf94cfa9514c1ae65a516b, type: 3}
-  _bitDelay: 0.45
+  _bitDelay: 0.36265
   _bitLength: 0.15
   _offset: 0

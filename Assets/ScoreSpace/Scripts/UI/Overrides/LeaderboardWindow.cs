@@ -19,13 +19,12 @@ namespace ScoreSpace
 
         public override void OpenWindow()
         {
+            base.OpenWindow();
             Score.GetLeaderboard(OnScoreCompleted);
         }
 
         private void OnScoreCompleted(LootLockerLeaderboardMember[] members)
         {
-            base.OpenWindow();
-
             for (int i = 0; i < _scores.Length; i++)
             {
                 if (members.Length > i)
